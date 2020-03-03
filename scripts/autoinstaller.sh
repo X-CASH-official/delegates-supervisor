@@ -14,8 +14,8 @@ INSTALLATION_TYPE_SETTINGS=""
 CONTAINER_NAME=XCASH-DPOPS-solo-delegate-website
 NGINX_CONFIGURATION_SETTINGS_FILE=/etc/nginx/sites-available/default
 WEBSITE_DIRECTORY=/var/www/html
-SOLO_DELEGATES_WEBSITE_URL=https://github.com/X-CASH-official/XCASH_DPOPS_solo_delegates_website.git
-SOLO_DELEGATES_WEBSITE_DIR=/root/XCASH_DPOPS_solo_delegate_website
+SOLO_DELEGATES_WEBSITE_URL=https://github.com/X-CASH-official/delegates-supervisor.git
+SOLO_DELEGATES_WEBSITE_DIR=/root/delegates-supervisor
 PUBLIC_ADDRESS=""
 
 # Files

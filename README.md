@@ -18,7 +18,9 @@ This website will give users
 
 ## Table of Contents  
 [Dependencies](#dependencies)  
-[Installation Process](#installation-process)
+[Installation Process](#installation-process)  
+[Configure the Container](#configure-the-container)  
+[Update Process](#update-process)
 
 [Testing](#testing) 
  
@@ -80,6 +82,24 @@ To exit the terminal
 
 To list all running containers  
 `lxc list`
+
+
+
+## Configure the Container
+
+Now you need to setup port forwarding on the container to route all traffic on port 80 to the container.
+
+First get the containers private IP address (the IPV4 address)  
+`lxc list`
+
+Then forward the ports to the containers private IP address  
+```
+lxc config device add delegates-supervisor delegates-supervisor-80 proxy listen=tcp:PUBLIC_IP_OF_SERVER:80 connect=tcp:PRIVATE_IP_OF_CONTAINER:80
+```
+
+to remove the proxy  
+`lxc config device remove delegates-supervisor delegates-supervisor-80`
+
 
 
 ## Update Process

@@ -154,6 +154,15 @@ function build_solo_delegates_website()
   echo
 }
 
+function add_proxy_routing()
+{
+  echo -ne "${COLOR_PRINT_YELLOW}Adding Proxy Routing on Port 80 to the Container${END_COLOR_PRINT}"
+  data=$(lxc list "${CONTAINER_NAME}" -c 4 | awk '!/IPV4/{ if ( $2 != "" ) print $2}')
+  lxc config device add "${CONTAINER_NAME}" "${CONTAINER_NAME}"-80 proxy listen=tcp:0.0.0.0:80 connect=tcp:"${data}":80
+  echo -ne "\r${COLOR_PRINT_GREEN}Adding Proxy Routing on Port 80 to the Container${END_COLOR_PRINT}"
+  echo
+}
+
 function install()
 {
   echo
@@ -172,6 +181,7 @@ function install()
   download_solo_delegate_website
   install_solo_delegates_website_npm_packages
   build_solo_delegates_website
+  add_proxy_routing
 
   echo
   echo

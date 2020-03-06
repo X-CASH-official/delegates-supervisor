@@ -1,114 +1,166 @@
-# delegates supervisor
+<div align=middle>
 
-Forked from [cdk-admin](https://github.com/codetok/cdk-admin), an Angular 6 admin panel using angular material & angular flex.
+<a align="center" href="https://x-network.io/xcash"><img src="header.png" alt="X-Cash Core"></a>
 
+[![Build Status](https://travis-ci.org/x-cash-official/delegates-website.svg?branch=master)](https://travis-ci.org/x-cash-official/delegates-website)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
+</div>
 
+# X-Cash Delegates Supervisor
 
-## Introduction
+👨‍💻 **Easy access to your statistics and information on the latest block creation**
 
-This website is optional and only for solo delegates
+*Admin-panel-styled dashboard forked from [cdk-admin](https://github.com/codetok/cdk-admin), an Angular 6 admin panel using angular material.*
 
-This website will give users
-* A dashboard to view there statistics and total blocks
+## Table of Contents
 
-**Note this can be setup on a separate system than the XCASH_DPOPS system, since it uses API calls to the delegates website**
+- [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [License](#license)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
+- [Security](#security)
+- [Installation Process](#installation-process)
 
+## Features
 
+> This website is *optional* to run for solo delegates. It can be setup on a separate system than the `xcash-dpops` node as it's using API calls to the explorer.
 
-## Table of Contents  
-[Dependencies](#dependencies)  
-[Installation Process](#installation-process)  
-[Configure the Container](#configure-the-container)  
-[Update Process](#update-process)
+**One-stop Dashboard**  
+Have a quick view of the latest block creation and your delegate statistics.
 
-[Testing](#testing) 
+## License
+
+**The X-Cash Delegate Explorer is an open-source project managed by the X-Cash Foundation**.  
+We are operating under the [MIT License](LICENSE).
+
+## Contributing
+
+**Thank you for thinking of contributing! 😃**   
+If you want to help out, check [CONTRIBUTING](https://github.com/X-CASH-official/.github/blob/master/CONTRIBUTING.md) for a set of guidelines and check our [opened issues](https://github.com/X-CASH-official/delegates-explorer/issues).
+
+## Documentation
+
+We are hosting our documentation on **GitBook** 👉 [**docs.xcash.foundation**](https://docs.xcash.foundation/)
+
+> You can contribute directly on our [`gitbook-docs`](https://github.com/X-CASH-official/gitbook-docs) repository.
+
+## Security 
+
+If you discover a **security** vulnerability, please send an e-mail to [security@xcash.foundation](mailto:security@xcash.foundation).  
+All security vulnerabilities concerning the X-Cash blockchain will be promply addressed.
  
- 
-## Dependencies
-
-The following table summarizes the tools and libraries required to run XCASH DPOPS - Delegate Website
-
-| Dependencies                                 | Min. version  | Ubuntu package            |
-| -------------------------------------------- | ------------- | ------------------------- |
-| Node.js                                      | 8             |  install from script    | 
-| Angular                                      | 6             |  install from script         |
-| Nginx                                  | latest version | install from script |
-
-
-
 ## Installation Process
 
-You can install and update the website in a LXD/LXC container using the autoinstaller.
- 
-We will use LXD to manage LXC containers as this is a more user friendly tool for LXC containers. LXD might already be installed on some Ubuntu servers, but it is recommend to uninstall this version of LXD and install LXD using a snap. This is because the LXD that comes installed on some servers will not be up to date and can only be updated to minor releases.
+### Dependencies
 
-First check if LXD is already installed on your server  
-`lxd --version`
+> The following table summarizes the tools and libraries required to run the delegates explorer.
 
-If it does output a version, then uninstall it  
-`sudo apt remove -y --purge lxd lxd-client`
+| Dependencies | Min. version   | Ubuntu package                                                      |
+| ------------ | -------------- | ------------------------------------------------------------------- |
+| `Node.js`      | 8              | install from binaries                                               |
+| `Angular`      | 6              | install from `npm`                                                    |
+| `nginx`                                  | latest version | install from script |
 
-Then install LXD  
-`sudo snap install lxd`
+### Requirements
 
-Then run the configuration for LXD and press enter to get the default selection to the configuration questions  
-`lxd init`
+#### Update LXD
 
-When it ask for the size of the new loop device, dont use the default answer, instead specify 80-90% of your disk space, this way your containers wont have an artifical low disk space limit and can use most of your disk space.
+> LXD is a Linux Container system manager. Learn more [here](https://linuxcontainers.org/) 
 
-Then run the following on the host, to let the autoinstaller install the website into a LXC/LXD container, and choose install mode
+*You can install and update the website in a LXD/LXC container using the [`xcash-dpops`](https://github.com/X-CASH-official/xcash-dpops/tree/master#system-requirements) auto-installer.*
 
+Check if LXD is installed:
+```bash
+lxd --version
 ```
+
+If it displays a version, it is recommneded to uninstall it to update it manually. Run:
+```bash
+sudo apt remove -y --purge lxd lxd-client
+```
+
+Then reinstall the latest version:
+```bash
+sudo snap install lxd
+```
+
+Run the configuration for LXD and set the default selection to the configuration questions:
+
+```bash
+lxd init
+```
+
+> For the size of the new loop device **specify 80-90% of your disk space**. Your containers won't have an artifical low disk space limit.
+
+#### Install from script
+
+Run the `autoinstaller.sh` to install the website into a LXC/LXD container:
+
+```bash
 bash -c "$(curl -sSL https://raw.githubusercontent.com/X-CASH-official/delegates-supervisor/master/scripts/autoinstaller.sh)"
 ```
 
-The container should be started but here are the basic commands for maintaining the container
+The website will be started in the LXC container.
 
-To start the container  
-`lxc start container`
+<details><summary><strong>Container commands</strong></summary>
 
-To stop the container  
-`lxc stop container`
+```bash
+# Start the container  
+lxc start container
 
-To delete the container (Note the container must be stopped first)  
-`lxc delete container`
+# Stop the container  
+lxc stop container
 
-To open a terminal inside the container  
-`lxc exec container -- bash`
+# Delete the container (The container must be stopped first)  
+lxc delete container
 
-To exit the terminal  
-`exit`
+# Open a terminal inside the container  
+lxc exec container -- bash
 
-To list all running containers  
-`lxc list`
+# Exit the terminal  
+exit
 
-
-
-## Configure the Container
-
-Now you need to setup port forwarding on the container to route all traffic on port 80 to the container.
-
-First get the containers private IP address (the IPV4 address)  
-`lxc list`
-
-Then forward the ports to the containers private IP address  
+# List all running containers  
+lxc list
 ```
+
+</details>
+
+
+#### Configure the container
+
+You need to setup port forwarding on the container to route all traffic on `port 80` to the container.
+
+Check the containers private IPV4 address:
+```bash
+lxc list
+```
+
+Then forward the ports to the containers private IP address:  
+```bash
 lxc config device add delegates-supervisor delegates-supervisor-80 proxy listen=tcp:PUBLIC_IP_OF_SERVER:80 connect=tcp:PRIVATE_IP_OF_CONTAINER:80
 ```
 
-to remove the proxy  
-`lxc config device remove delegates-supervisor delegates-supervisor-80`
+#### Remove proxy
+
+```bash
+lxc config device remove delegates-supervisor delegates-supervisor-80
+```
 
 
 
-## Update Process
+### Update Process
 
-Run the autoinstaller on the host, and choose the update mode
+Run the `autoinstaller.sh` on the host and choose the update mode:
 
+```bash
+bash -c "$(curl -sSL https://raw.githubusercontent.com/X-CASH-official/delegates-supervisor/master/scripts/autoinstaller.sh)"
+``` 
 
+### Testing
 
-## Testing
-
-Run the angular test to make sure the website is functioning correctly  
-`npm test`
+```bash
+npm test
+```

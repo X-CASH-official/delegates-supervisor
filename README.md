@@ -132,7 +132,6 @@ lxc list
 
 </details>
 
-
 #### Configure the container
 
 You need to setup port forwarding on the container to route all traffic on `port 80` to the container.
@@ -152,7 +151,6 @@ lxc config device add delegates-supervisor delegates-supervisor-80 proxy listen=
 ```bash
 lxc config device remove delegates-supervisor delegates-supervisor-80
 ```
-
 
 
 ### Update Process

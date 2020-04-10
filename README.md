@@ -2,8 +2,8 @@
 
 <a align="center" href="https://x-network.io/xcash"><img src="header.png" alt="X-Cash Core"></a>
 
-[![Build Status](https://travis-ci.org/x-cash-official/delegates-website.svg?branch=master)](https://travis-ci.org/x-cash-official/delegates-website)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![Discord](https://img.shields.io/discord/470575102203920395?logo=discord)](https://discordapp.com/invite/4CAahnd)
 
 </div>
 
@@ -22,6 +22,10 @@
 - [Documentation](#documentation)
 - [Security](#security)
 - [Installation Process](#installation-process)
+  - [Dependencies](#dependencies)
+  - [Requirements](#requirements)
+  - [Update Process](#update-process)
+  - [Testing](#testing)
 
 ## Features
 

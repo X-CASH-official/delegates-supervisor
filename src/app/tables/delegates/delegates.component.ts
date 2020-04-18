@@ -52,7 +52,11 @@ get_delegates_statistics()
     var count;
     for (count = 0; count < block_producer_block_heights.length; count++)
     {
-      this.exampleDatabase.addUser((count+1).toString(),block_producer_block_heights[count].toString());
+      if (count == 0)
+      {
+        continue;
+      }
+      this.exampleDatabase.addUser((count).toString(),block_producer_block_heights[count].toString());
       if (count + 1 == block_producer_block_heights.length)
       {
         this.last_block_found = parseInt(block_producer_block_heights[count]);
@@ -65,7 +69,7 @@ get_delegates_statistics()
     this.dashCard3[0].text = data.online_status;
     this.dashCard3[1].text = parseInt(data.block_verifier_online_percentage);
     this.dashCard4[0].text = parseInt(data.block_producer_total_rounds);
-    this.dashCard4[1].text = block_producer_block_heights.length;
+    this.dashCard4[1].text = block_producer_block_heights.length-1;
     this.dashCard5[0].text = parseInt(data.block_verifier_total_rounds) / block_producer_block_heights.length;
     this.dataSource = new ExampleDataSource(this.exampleDatabase);
     this.dataSource = new ExampleDataSource(this.exampleDatabase);

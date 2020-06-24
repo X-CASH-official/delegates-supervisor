@@ -21,7 +21,7 @@ export class ProfileCardComponent implements OnInit {
     about:string;
     website:string;
     team:string;
-    shared_delegates_status:string;
+    shared_delegate_status:string;
     delegate_fee:string;
     server_specs:string;
     public_address:string;

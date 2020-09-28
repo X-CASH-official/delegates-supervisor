@@ -24,6 +24,11 @@
 - [Installation Process](#installation-process)
   - [Dependencies](#dependencies)
   - [Requirements](#requirements)
+  - [Develop](#develop)
+  - [Testing](#testing)
+- [Installation Process LXC](#installation-process-lxc)
+  - [Dependencies](#dependencies)
+  - [Requirements](#requirements)
   - [Update Process](#update-process)
   - [Testing](#testing)
 
@@ -36,7 +41,7 @@ Have a quick view of the latest block creation and your delegate statistics.
 
 ## License
 
-**The X-Cash Delegate Explorer is an open-source project managed by the X-Cash Foundation**.  
+**The X-Cash Delegate Supervisor is an open-source project managed by the X-Cash Foundation**.  
 We are operating under the [MIT License](LICENSE).
 
 ## Contributing
@@ -54,8 +59,135 @@ We are hosting our documentation on **GitBook** 👉 [**docs.xcash.foundation**]
 
 If you discover a **security** vulnerability, please send an e-mail to [security@xcash.foundation](mailto:security@xcash.foundation).  
 All security vulnerabilities concerning the X-Cash blockchain will be promply addressed.
- 
+
 ## Installation Process
+
+### Dependencies
+
+> The following table summarizes the tools and libraries required to run the delegates pool website.
+
+| Dependencies | Min. version   | Ubuntu package                                                      |
+| ------------ | -------------- | ------------------------------------------------------------------- |
+| `Node.js`      | 8              | install from binaries                                               |
+| `Angular`      | 6              | install from `npm`                                                    |
+| `Nginx`  | any | `nginx` |
+
+
+**If you want to run the website using SSL then you will need to install a webserver like nginx  
+The readme shows you how to setup the website using HTTP, since there is no sensitive data in the website**
+
+### Requirements
+
+#### Installing NGINX
+`sudo apt update && sudo apt install -y nginx`
+
+#### Configure NGINX
+
+NGINX is already configured for a single website once installed. You can copy the dist folder contents to `/var/www/html/` to install the website
+
+#### Intalling Node.js from binaries
+
+> It is recommended to install the nodejs folder in the home directory `/home/$USER/` or root directory (`/root/`) in a new folder
+
+To download, go to the Node.js official [release page](https://nodejs.org/en/download/current/) and download the **Linux Binaries**. Copy it to your deisgnated folder and run these commands:
+
+```bash
+tar -xf node*.tar.xz
+rm node*.tar.xz
+```
+
+Then add Node.js to your path:
+
+```bash
+echo -e '\nexport PATH=path_to_nodejs/bin:$PATH' >> ~/.profile && source ~/.profile
+```
+> Replace `path_to_nodejs/bin` with the location of the `bin` folder where you installed Node.js
+
+#### npm
+
+> Note if your installing on a `root` session, you need to run these additional commands before upgrading
+> ```bash
+> npm config set user 0 
+> npm config set unsafe-perm true
+> ```
+
+Update `npm` globally:
+```bash
+npm install -g npm
+```
+
+#### angular 
+
+Install the latest version of Angular globally: 
+```shell 
+npm install -g @angular/cli@latest
+```
+
+Then install the compressor `UglifyJS` globally : 
+```shell
+npm install -g uglify-js
+```
+
+### Develop
+
+#### Clone repository
+
+In your desired folder, clone the repository:
+```shell
+git clone https://github.com/X-CASH-official/delegates-supervisor.git
+``` 
+
+#### Enable port 80 in the firewall
+
+Uncomment these lines in `$HOME/firewall_script.sh`
+```
+# iptables -t filter -I INPUT -p tcp --syn --dport 80 -m connlimit --connlimit-above 100 --connlimit-mask 32 -j DROP
+```
+
+```
+# iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+```
+
+Run the firewall script  
+`$HOME/firewall_script.sh`
+
+#### Build
+
+To build the delegates pool website, go to the `delegates-supervisor` folder and run:
+```shell
+npm run build
+```
+
+It will build in the `dist`folder.
+
+Compress the `.js` files with `Uglify-JS` and move all of the contents of this folder to your `xcash-dpops/` folder
+
+```shell
+cd dist
+for f in *.js; do echo "Processing $f file.."; uglifyjs $f --compress --mangle --output "{$f}min"; rm $f; mv "{$f}min" $f; done
+rm -r ../xcash-dpops/delegates-pool-website
+mkdir ../xcash-dpops/delegates-pool-website
+cd ../
+```
+
+Copy the dist folders contents to the default nginx setup  
+`cp -a dist/* /var/www/html/`
+
+### Testing
+
+```shell
+npm test
+``` 
+
+To test that you have properly configured the delegates pool website, run `xcash-dpops` with the `--test_data_add` flag. *This will add test datas to the MongoDB.*
+
+Now run the website server again using the normal options.
+
+Next, navigate to your servers IP address or website domain. You should now see the website and some test data. You can navigate through the website using the test data.
+
+When you have verified that the website works correctly, remove the test data by shutting down the `xcash-dpops` and then running it again with the `--test_data_remove` flag. 
+ 
+## Installation Process LXC
 
 ### Dependencies
 

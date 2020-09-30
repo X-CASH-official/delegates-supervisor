@@ -12,24 +12,24 @@ import { Observable } from 'rxjs';
 })
 export class delegatesComponent implements OnInit {
         public dashCard1 = [
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'TOTAL VOTE COUNT', icon: 'cloud' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'CURRENT DELEGATE RANK', icon: 'cloud' }
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'TOTAL VOTE COUNT', icon: 'done_all' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'CURRENT DELEGATE RANK', icon: 'leaderboard' }
     ];
 	public dashCard2 = [
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIER TOTAL ROUNDS', icon: 'cloud' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIERS ONLINE TOTAL ROUNDS', icon: 'cloud' }
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIER TOTAL ROUNDS', icon: 'autorenew' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIERS ONLINE TOTAL ROUNDS', icon: 'sync' }
     ];
         public dashCard3 = [
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: '', settings: false, title: 'ONLINE STATUS', icon: 'cloud' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIER ONLINE PERCENTAGE', icon: 'cloud' }
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: '', settings: false, title: 'ONLINE STATUS', icon: 'online_prediction' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK VERIFIER ONLINE PERCENTAGE', icon: 'update' }
     ];
 	public dashCard4 = [
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK PRODUCER TOTAL ROUNDS', icon: 'cloud' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: 0, settings: true, title: 'TOTAL BLOCKS', icon: 'cloud' }
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'BLOCK PRODUCER TOTAL ROUNDS', icon: 'find_replace' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: 0, settings: true, title: 'TOTAL BLOCKS', icon: 'find_in_page' }
     ];
    	public dashCard5 = [
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'AVERAGE', icon: 'cloud' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: 0, settings: true, title: 'ESTIMATED TIME SINCE LAST BLOCK FOUND (IN HOURS)', icon: 'cloud' }
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'AVERAGE', icon: 'vertical_align_center' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text_settings: 20, text: 0, settings: true, title: 'ESTIMATED TIME SINCE LAST BLOCK FOUND (IN HOURS)', icon: 'alarm_on' }
     ];
 	public displayedColumns = ['ID', 'Block_Height'];
 	public exampleDatabase = new ExampleDatabase();
@@ -74,9 +74,9 @@ get_delegates_statistics()
     this.dataSource = new ExampleDataSource(this.exampleDatabase);
     this.dataSource = new ExampleDataSource(this.exampleDatabase);
   },
-  (error) => 
+  (error) =>
   {
-    Swal.fire("Error","An error has occured","error");    
+    Swal.fire("Error","An error has occured","error");
 });
 }
 
@@ -88,7 +88,7 @@ get_delegates_website_statistics()
     var data = JSON.parse(JSON.stringify(res));
     this.dashCard5[1].text = ((parseInt(data.current_block_height) - this.last_block_found) * this.httpdataservice.BLOCK_TIME) / 60;
   },
-  (error) => 
+  (error) =>
   {
     Swal.fire("Error","An error has occured","error");
   });
@@ -100,5 +100,5 @@ ngOnInit()
   this.get_delegates_website_statistics();
 }
 
-       
+
 }

@@ -99,13 +99,13 @@ location / {
 }
 ```
 to
-```bash
+`
 location / {
   # First attempt to serve request as file, then
   # as directory, then fall back to displaying a 404.
   try_files $uri $uri/ /index.html;
 }
-```
+`
 
 Now, you can copy the dist folder contents to `/var/www/html/` to install the website
 
@@ -186,7 +186,9 @@ nano delegates-supervisor/src/app/services/public_address.service.ts
 Edit Line 7 from:
 
 `PUBLIC_ADDRESS:string = ""`
+
 to
+
 `PUBLIC_ADDRESS:string = "<YOUR_NODE_WALLET_PUBLIC_ADDRESS>"`
 
 

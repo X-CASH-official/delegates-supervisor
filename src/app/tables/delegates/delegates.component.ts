@@ -47,7 +47,7 @@ get_delegates_statistics()
   {
     this.exampleDatabase = new ExampleDatabase();
     var data = JSON.parse(JSON.stringify(res));
-    this.title = `Statistics for ${data.delegate_name}`;
+    this.title = `${data.delegate_name}`;
     var block_producer_block_heights = data.block_producer_block_heights.split("|");
     var count;
     for (count = 0; count < block_producer_block_heights.length; count++)

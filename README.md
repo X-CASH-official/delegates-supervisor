@@ -182,9 +182,7 @@ nano delegates-supervisor/src/app/services/public_address.service.ts
 Edit Line 7:
 
 `PUBLIC_ADDRESS:string = ""`
-
 to
-
 `PUBLIC_ADDRESS:string = "<YOUR_NODE_WALLET_PUBLIC_ADDRESS>"`
 
 

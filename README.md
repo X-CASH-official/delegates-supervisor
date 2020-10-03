@@ -55,7 +55,7 @@ We are hosting our documentation on **GitBook** 👉 [**docs.xcash.foundation**]
 
 > You can contribute directly on our [`gitbook-docs`](https://github.com/X-CASH-official/gitbook-docs) repository.
 
-## Security 
+## Security
 
 If you discover a **security** vulnerability, please send an e-mail to [security@xcash.foundation](mailto:security@xcash.foundation).  
 All security vulnerabilities concerning the X-Cash blockchain will be promply addressed.
@@ -82,8 +82,32 @@ The readme shows you how to setup the website using HTTP, since there is no sens
 `sudo apt update && sudo apt install -y nginx`
 
 #### Configure NGINX
+NGINX is already configured for a single website once installed.
 
-NGINX is already configured for a single website once installed. You can copy the dist folder contents to `/var/www/html/` to install the website
+Just edit the nginx default configuration to enable subfolder:
+
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+Change
+```bash
+location / {
+  # First attempt to serve request as file, then
+  # as directory, then fall back to displaying a 404.
+  try_files $uri $uri/ =404;
+}
+```
+to
+```bash
+location / {
+  # First attempt to serve request as file, then
+  # as directory, then fall back to displaying a 404.
+  try_files $uri $uri/ /index.html;
+}
+```
+Now, you can copy the dist folder contents to `/var/www/html/` to install the website
+
 
 #### Intalling Node.js from binaries
 
@@ -107,7 +131,7 @@ echo -e '\nexport PATH=path_to_nodejs/bin:$PATH' >> ~/.profile && source ~/.prof
 
 > Note if your installing on a `root` session, you need to run these additional commands before upgrading
 > ```bash
-> npm config set user 0 
+> npm config set user 0
 > npm config set unsafe-perm true
 > ```
 
@@ -116,14 +140,14 @@ Update `npm` globally:
 npm install -g npm
 ```
 
-#### angular 
+#### angular
 
-Install the latest version of Angular globally: 
-```shell 
+Install the latest version of Angular globally:
+```shell
 npm install -g @angular/cli@latest
 ```
 
-Then install the compressor `UglifyJS` globally : 
+Then install the compressor `UglifyJS` globally :
 ```shell
 npm install -g uglify-js
 ```
@@ -135,7 +159,7 @@ npm install -g uglify-js
 In your desired folder, clone the repository:
 ```shell
 git clone https://github.com/X-CASH-official/delegates-supervisor.git
-``` 
+```
 
 #### Enable port 80 in the firewall
 
@@ -151,6 +175,18 @@ Uncomment these lines in `$HOME/firewall_script.sh`
 Run the firewall script  
 `$HOME/firewall_script.sh`
 
+#### Configure
+
+Add your node wallet public address for the API calls:
+```shell
+nano delegates-supervisor/src/app/services/public_address.service.ts
+```
+Edit Line 7 from:
+`PUBLIC_ADDRESS:string = ""
+to
+`PUBLIC_ADDRESS:string = "<YOUR_NODE_WALLET_PUBLIC_ADDRESS>"
+
+
 #### Build
 
 To build the delegates pool website, go to the `delegates-supervisor` folder and run:
@@ -165,8 +201,6 @@ Compress the `.js` files with `Uglify-JS` and move all of the contents of this f
 ```shell
 cd dist
 for f in *.js; do echo "Processing $f file.."; uglifyjs $f --compress --mangle --output "{$f}min"; rm $f; mv "{$f}min" $f; done
-rm -r ../xcash-dpops/delegates-pool-website
-mkdir ../xcash-dpops/delegates-pool-website
 cd ../
 ```
 
@@ -177,7 +211,7 @@ Copy the dist folders contents to the default nginx setup
 
 ```shell
 npm test
-``` 
+```
 
 To test that you have properly configured the delegates pool website, run `xcash-dpops` with the `--test_data_add` flag. *This will add test datas to the MongoDB.*
 
@@ -185,8 +219,8 @@ Now run the website server again using the normal options.
 
 Next, navigate to your servers IP address or website domain. You should now see the website and some test data. You can navigate through the website using the test data.
 
-When you have verified that the website works correctly, remove the test data by shutting down the `xcash-dpops` and then running it again with the `--test_data_remove` flag. 
- 
+When you have verified that the website works correctly, remove the test data by shutting down the `xcash-dpops` and then running it again with the `--test_data_remove` flag.
+
 ## Installation Process LXC
 
 ### Dependencies
@@ -203,7 +237,7 @@ When you have verified that the website works correctly, remove the test data by
 
 #### Update LXD
 
-> LXD is a Linux Container system manager. Learn more [here](https://linuxcontainers.org/) 
+> LXD is a Linux Container system manager. Learn more [here](https://linuxcontainers.org/)
 
 *You can install and update the website in a LXD/LXC container using the [`xcash-dpops`](https://github.com/X-CASH-official/xcash-dpops/tree/master#system-requirements) auto-installer.*
 
@@ -291,7 +325,7 @@ Run the `autoinstaller.sh` on the host and choose the update mode:
 
 ```bash
 bash -c "$(curl -sSL https://raw.githubusercontent.com/X-CASH-official/delegates-supervisor/master/scripts/autoinstaller.sh)"
-``` 
+```
 
 ### Testing
 

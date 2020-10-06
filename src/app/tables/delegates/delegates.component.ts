@@ -20,7 +20,7 @@ export class delegatesComponent implements OnInit {
     ];
   public dashCard2 = [
         { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'ONLINE PERCENTAGE', icon: 'update' },
-        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'EST ROUNDS TILL NEXT FINDING ', icon: 'published_with_changes' },
+        { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'EST ROUNDS BTW HITS ', icon: 'published_with_changes' },
         { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'HOURS SINCE LAST FINDING', icon: 'alarm_on' }
     ];
 	public  dashCard3 = [

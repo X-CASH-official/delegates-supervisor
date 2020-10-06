@@ -54,7 +54,7 @@ describe('delegatesComponent', () => {
   it('should set dash card sixs property to a string', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard4').dashData.text).toBe(0));
 
   it('should create dash card nine', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard5')).toBeTruthy());
-  it('should set dash card nines title', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard5').dashData.title).toBe('EST ROUNDS TILL NEXT FINDING'));
+  it('should set dash card nines title', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard5').dashData.title).toBe('EST ROUNDS BTW HITS'));
   it('should set dash card nines property to a string', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard5').dashData.text).toBe(0));
 
   it('should create dash card ten', () => expect(fixture.debugElement.nativeElement.querySelector('#dashcard6')).toBeTruthy());

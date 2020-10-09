@@ -32,7 +32,8 @@ export class delegatesComponent implements OnInit {
         { colorDark: '#fa741c', colorLight: '#fb934e', width: 40, text: 0, settings: true, title: 'VOTE COUNT', icon: 'done_all' },
     ];
 
-	public displayedColumns = ['ID', 'Block_Height'];
+
+  public displayedColumns = ['id', 'block_height', 'block_hash', 'block_date_and_time', 'block_reward'];
 	public exampleDatabase = new ExampleDatabase();
 	public dataSource: ExampleDataSource | null;
 	public showFilterTableCode;
@@ -77,7 +78,6 @@ export class delegatesComponent implements OnInit {
 
       this.dashCard4[0].text = parseInt(data.total_vote_count) / this.httpdataservice.XCASH_WALLET_DECIMAL_PLACES_AMOUNT;
 
-      this.dataSource = new ExampleDataSource(this.exampleDatabase);
       this.dataSource = new ExampleDataSource(this.exampleDatabase);
     },
     (error) =>

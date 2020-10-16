@@ -5,8 +5,9 @@
 	padding: 5px 0px 15px 0px;
 }
 .table-container .mat-table {
-	max-height: calc(100vh - 200px);
-	overflow-y: auto;
+	// max-height: calc(100vh - 250px);
+	// overflow-y: auto;
+	width: 100%;
 }
 .table-container .mat-table .mat-header-row {
 	position: absolute;
@@ -16,19 +17,26 @@
 	background: #fff;
 }
 .table-header {
-	background-color: #039be5;
+	background-color: #1189a5;
 	color: white;
-	padding: 0 20px;
+	padding: 0px 20px 0px 20px;
+	color: white;
 }
 .table-component-holder {
-	border: 1px solid #039be5;
+	border: 1px solid #1189a5;
 	background-color: white;
 }
-
-#dashcard1 {
-	font-family: "Helvetica Neue", sans-serif;
-	font-size: 26px;
-	line-height: 0px;
+.mat-toolbar-single-row{
+	height: 65px;
+}
+.mat-form-field {
+		font-size: 26px;
+    font-weight: 500;
+    line-height: normal;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+		padding: 0px;
+		margin:0;
+		width: 100%;
 }
 
 .mat-table {

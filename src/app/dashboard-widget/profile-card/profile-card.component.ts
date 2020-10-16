@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {httpdataservice} from '../../services/http-request.service';
+import {HttpdataService} from '../../services/http-request.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,7 +31,7 @@ export class ProfileCardComponent implements OnInit {
     public bio =true;
     public skill;
     public proj;
-    constructor(private httpdataservice: httpdataservice) { }
+    constructor(private HttpdataService: HttpdataService) { }
 
    copyMessage(val: string, text:string){
     let selBox = document.createElement('textarea');

@@ -6,7 +6,7 @@ import { LazyLoadModule } from './lazy-load/lazy-load.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
-import {httpdataservice} from 'app/services/http-request.service'
+import {HttpdataService} from 'app/services/http-request.service'
 import {public_address} from 'app/services/public_address.service'
 
 
@@ -24,7 +24,7 @@ import {public_address} from 'app/services/public_address.service'
     HttpClientModule
   ],
   providers: [
-    httpdataservice,
+    HttpdataService,
     public_address
   ],
   bootstrap: [AppComponent]

@@ -1,34 +1,37 @@
-<h2 style="text-align: center;">{{title}}</h2>
+<h2  class="page_title">{{title}}</h2>
 
-<div fxLayout="row" fxLayout="row wrap">
-    <div *ngFor="let dash of dashCard1; let count = index" fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="25">
+<div fxLayout="row wrap">
+    <div *ngFor="let dash of dashCard1; let count = index" fxFlex.lt-sm="100" fxFlex.sm="100" fxFlex.md="66.7" fxFlex.lg="66.7">
+        <cdk-dashcard id="dashcard{{count+1}}" [dashData]="dash"></cdk-dashcard>
+    </div>
+    <div *ngFor="let dash of dashCard2; let count = index" fxFlex.lt-sm="100" fxFlex.sm="100" fxFlex.md="33.3" fxFlex.lg="33.3">
         <cdk-dashcard id="dashcard{{count+1}}" [dashData]="dash"></cdk-dashcard>
     </div>
 </div>
 
-<div fxLayout="row" fxLayout="row wrap">
-    <div *ngFor="let dash of dashCard2; let count = index" fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="25">
-        <cdk-dashcard id="dashcard{{count+3}}" [dashData]="dash"></cdk-dashcard>
+<div fxLayout="row wrap">
+    <div *ngFor="let dash of dashCard3; let count = index" fxFlex.lt-sm="100" fxFlex.sm="100" fxFlex.md="33.3">
+        <cdk-dashcard id="dashcard{{count+2}}" [dashData]="dash"></cdk-dashcard>
     </div>
 </div>
 
-<div fxLayout="row" fxLayout="row wrap">
-    <div *ngFor="let dash of dashCard3; let count = index" fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="25">
+<div fxLayout="row wrap">
+    <div *ngFor="let dash of dashCard4; let count = index" fxFlex.lt-sm="100" fxFlex.sm="100" fxFlex.md="33.3">
         <cdk-dashcard id="dashcard{{count+5}}" [dashData]="dash"></cdk-dashcard>
     </div>
 </div>
 
-<div fxLayout="row" fxLayout="row wrap">
-    <div *ngFor="let dash of dashCard4; let count = index" fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="25">
-        <cdk-dashcard id="dashcard{{count+7}}" [dashData]="dash"></cdk-dashcard>
+<div fxLayout="row wrap">
+    <div *ngFor="let dash of dashCard5; let count = index" fxFlex.lt-sm="100" fxFlex.sm="100" fxFlex.md="33.3">
+        <cdk-dashcard id="dashcard{{count+8}}" [dashData]="dash"></cdk-dashcard>
     </div>
 </div>
 
-<div fxLayout="row" fxLayout="row wrap">
+<!-- <div fxLayout="row" fxLayout="row wrap">
     <div *ngFor="let dash of dashCard5; let count = index" fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="25">
         <cdk-dashcard id="dashcard{{count+9}}" [dashData]="dash"></cdk-dashcard>
     </div>
-</div>
+</div> -->
 
 <div fxLayout="column"  class="components-container-gt-xs"  [ngClass.xs]="'components-container-xs'"  fxLayoutGap="20px">
 
@@ -37,25 +40,59 @@
 			<h1 class="mat-headline center-align" >Blocks</h1>
 		</mat-toolbar>
 		<div class="table-container">
-			<mat-table #table id="blocks_table" [dataSource]="dataSource">
+			<mat-table #table id="blocks_found_table" [dataSource]="dataSource" matSortActive="id" matSortDirection="desc" matSortDisableClear>
 
 				<!--- Note that these columns can be defined in any order.
 				The actual rendered columns are set as a property on the row definition" -->
-				
-				<ng-container matColumnDef="ID">
+
+				<!-- <ng-container matColumnDef="ID">
 					<mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
 					<mat-cell id="id{{row.id}}" *matCellDef="let row"> {{row.id | number}} </mat-cell>
 				</ng-container>
-				
+
 				<ng-container matColumnDef="Block_Height">
 					<mat-header-cell *matHeaderCellDef> Block Height </mat-header-cell>
-					<mat-cell id="blockheight{{row.id}}" *matCellDef="let row">{{row.block_height | number}}</mat-cell>
+					<mat-cell id="block_height{{row.id}}" *matCellDef="let row">
+            <a class="text-primary" [routerLink]="['http://delegates.xcash.foundation/auth/tables/round_statistics']" [queryParams]="{'data':row.block_height}">
+              <h3>{{row.block_height | number}}</h3>
+            </a>
+          </mat-cell>
 				</ng-container>
 
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+
+        <ng-container matColumnDef="id">
+					<mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+					<mat-cell id="id{{row.id}}" *matCellDef="let row"> {{row.id | number}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="block_height">
+					<mat-header-cell *matHeaderCellDef> Block Height </mat-header-cell>
+                   <mat-cell id="block_height{{row.id}}" *matCellDef="let row"><a class="text-primary" href="http://delegates.xcash.foundation/auth/tables/round_statistics?data={{row.block_height}}" target="_blank"><h3>{{row.block_height | number}}</h3></a></mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="block_hash">
+					<mat-header-cell *matHeaderCellDef> Block Hash </mat-header-cell>
+					<mat-cell id="block_hash{{row.id}}" *matCellDef="let row">{{row.block_hash}}</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="block_date_and_time">
+					<mat-header-cell *matHeaderCellDef> Block Date and Time </mat-header-cell>
+					<mat-cell id="block_date_and_time{{row.id}}" *matCellDef="let row"> {{row.block_date_and_time | date:'medium'}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="block_reward">
+					<mat-header-cell *matHeaderCellDef> Block Reward </mat-header-cell>
+					<mat-cell id="block_reward{{row.id}}" *matCellDef="let row"> {{row.block_reward | number}} </mat-cell>
+				</ng-container>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-				
+
+
+
 			</mat-table>
+
 		</div>
 	</div>
 </div>

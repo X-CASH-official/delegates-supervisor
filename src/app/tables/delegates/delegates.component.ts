@@ -34,14 +34,14 @@ export class delegatesComponent implements OnInit {
 
 
   public dashCard1 = [
-    { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 33.3, text_size: 40, text: 0, suffix: '',  title: 'DELEGATE RANK ', icon: 'leaderboard' },
-  ];
-  public dashCard2 = [
     { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 16.3, text_size: 40, text: 0, suffix: '',  title: 'VOTE COUNT', icon: 'done_all' },
   ];
-  public dashCard3 = [
-    { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 33.3, text_size: 40, text: 0, suffix: '',  title: 'BLOCKS FOUND ', icon: 'find_in_page' },
+  public dashCard2 = [
     { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: false, width_icon: 33.3, text_size: 36, text: '', suffix: '',  title: 'ONLINE STATUS', icon: 'online_prediction' },
+  ];
+  public dashCard3 = [
+    { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 33.3, text_size: 40, text: 0, suffix: '',  title: 'DELEGATE RANK ', icon: 'leaderboard' },
+    { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 33.3, text_size: 40, text: 0, suffix: '',  title: 'BLOCKS FOUND ', icon: 'find_in_page' },
     { colorDark: '#1189a5', colorLight: '#fa741c',  colorFont: '#ffffff', ogmeter: true, width_icon: 33.3, text_size: 40, text: 0, suffix: '%',  title: 'ONLINE PERCENTAGE', icon: 'update' }
   ];
   public dashCard4 = [
@@ -67,7 +67,7 @@ export class delegatesComponent implements OnInit {
 
   get_delegates_statistics()
   {
-    this.HttpdataService.get_request(this.HttpdataService.SERVER_HOSTNAME_AND_PORT_GET_DELEGATES_STATISTICS + "?parameter1=" + this.public_address.PUBLIC_ADDRESS).subscribe(
+    this.HttpdataService.get_request(this.HttpdataService.GET_DELEGATES_STATISTICS + "?parameter1=" + this.public_address.PUBLIC_ADDRESS).subscribe(
     (res) =>
     {
       this.exampleDatabase = new ExampleDatabase();
@@ -98,12 +98,12 @@ export class delegatesComponent implements OnInit {
       //
       // this.dashCard4[0].text = parseInt(data.total_vote_count) / this.HttpdataService.XCASH_WALLET_DECIMAL_PLACES_AMOUNT;
 
-      this.dashCard1[0].text = parseInt(data.current_delegate_rank);
+      this.dashCard1[0].text = parseInt(data.total_vote_count) / this.HttpdataService.XCASH_WALLET_DECIMAL_PLACES_AMOUNT;
 
-      this.dashCard2[0].text = parseInt(data.total_vote_count) / this.HttpdataService.XCASH_WALLET_DECIMAL_PLACES_AMOUNT;
+      this.dashCard2[0].text = data.online_status == 'true' ? 'Online'  : 'Offline';
 
       this.dashCard3[0].text = block_producer_block_heights.length-1;
-      this.dashCard3[1].text = data.online_status == 'true' ? 'Online'  : 'Offline';
+      this.dashCard3[1].text = parseInt(data.current_delegate_rank);
       this.dashCard3[2].text = parseInt(data.block_verifier_online_percentage);
 
       this.dashCard4[0].text = parseInt(data.block_producer_total_rounds) / parseInt(data.block_verifier_total_rounds) * 100;
@@ -124,7 +124,7 @@ export class delegatesComponent implements OnInit {
 
   // get_delegates_website_statistics()
   // {
-  //   this.HttpdataService.get_request(this.HttpdataService.SERVER_HOSTNAME_AND_PORT_GET_DELEGATE_WEBSITE_STATISTICS).subscribe(
+  //   this.HttpdataService.get_request(this.HttpdataService.GET_DELEGATE_WEBSITE_STATISTICS).subscribe(
   //   (res) =>
   //   {
   //     var data = JSON.parse(JSON.stringify(res));

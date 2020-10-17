@@ -5,8 +5,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 export class HttpdataService{
 constructor(private httpClient: HttpClient) {}
 
-SERVER_HOSTNAME_AND_PORT_GET_DELEGATES_STATISTICS:string = "http://delegates.xcash.foundation/getdelegatesstatistics";
-SERVER_HOSTNAME_AND_PORT_GET_DELEGATE_WEBSITE_STATISTICS:string = "http://delegates.xcash.foundation/delegateswebsitegetstatistics";
+GET_DELEGATES_STATISTICS:string = "http://delegates.xcash.foundation/getdelegatesstatistics";
+GET_DELEGATE_WEBSITE_STATISTICS:string = "http://delegates.xcash.foundation/delegateswebsitegetstatistics";
 XCASH_WALLET_DECIMAL_PLACES_AMOUNT:number = 1000000;
 BLOCK_TIME:number = 5;
 

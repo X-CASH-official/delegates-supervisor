@@ -15,9 +15,9 @@ export class AuthComponent implements OnInit{
   @Input() isVisible : boolean = true;
   visibility = 'shown';
 
-  sideNavOpened: boolean = true;
+  sideNavOpened: boolean = false;
   matDrawerOpened: boolean = false;
-  matDrawerShow: boolean = true;
+  matDrawerShow: boolean = false;
   sideNavMode: string = 'side';
 
   ngOnChanges() {
@@ -40,14 +40,14 @@ export class AuthComponent implements OnInit{
 	toggleView() {
 		if (this.media.isActive('gt-md')) {
             this.sideNavMode = 'side';
-            this.sideNavOpened = true;
+            this.sideNavOpened = false;
             this.matDrawerOpened = false;
-            this.matDrawerShow = true;
+            this.matDrawerShow = false;
         } else if(this.media.isActive('gt-xs')) {
             this.sideNavMode = 'side';
             this.sideNavOpened = false;
-            this.matDrawerOpened = true;
-            this.matDrawerShow = true;
+            this.matDrawerOpened = false;
+            this.matDrawerShow = false;
         } else if (this.media.isActive('lt-sm')) {
             this.sideNavMode = 'over';
             this.sideNavOpened = false;

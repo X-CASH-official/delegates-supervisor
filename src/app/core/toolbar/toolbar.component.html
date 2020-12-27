@@ -1,13 +1,25 @@
-<mat-toolbar   class="mat-elevation-z4">
-	<button mat-icon-button (click)="sidenav.toggle();drawer.toggle();" *ngIf="matDrawerShow">
-        <em class="material-icons app-toolbar-menu">menu </em>
-    </button>
-    <button mat-icon-button (click)="sidenav.toggle();" *ngIf="!matDrawerShow">
-        <em class="material-icons app-toolbar-menu">menu </em>
-    </button>
+<mat-toolbar class="mat-elevation-z4" id="header">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.2 46.2" height="50" width="50" class="xcash_logo">
+			<g transform="translate(-2.6 -1)">
+				<circle r="7.7" cy="8.7" cx="10.3" class="xca0"/>
+				<path d="M20.6 24.1c0 5.7-4.6 7.7-10.3 7.7a7.7 7.7 0 107.7 7.7c0-5.7 2-10.3 7.7-10.3s7.7 4.6 7.7 10.3a7.7 7.7 0 107.7-7.7c-5.7 0-10.3-2-10.3-7.7s4.6-7.7 10.3-7.7a7.7 7.7 0 10-7.7-7.7c0 5.7-2 10.3-7.7 10.3a5.1 5.1 0 00-5.1 5.1" class="xca1" />
+				<circle r="3.2" cy="17" cx="19.3" class="xca0"/>
+			</g>
+		</svg>
+		<h1 class="logo">
+				Solo Delegate
+		</h1>
 
-    <span class="spacer"></span>
+		<span class="spacer"></span>
 
-    <cdk-fullscreen></cdk-fullscreen>
- 
+		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Select a theme" matTooltip="Select a theme">
+			<em class="material-icons app-toolbar-menu">format_color_fill </em>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button value='dark' mat-menu-item   (click)="switchTheme('dark')">Dark</button>
+			<button value='light' mat-menu-item (click)="switchTheme('light')">Light</button>
+			<button value='unicorn' mat-menu-item (click)="switchTheme('unicorn')">Unicorn</button>
+			<button value='darksea' mat-menu-item (click)="switchTheme('darksea')">Darksea</button>
+		</mat-menu>
+
 </mat-toolbar>

@@ -1,45 +1,67 @@
-
-.table-container {
-	position: relative;
-	margin-top:50px;
-	padding: 5px 0px 15px 0px;
-}
-.table-container .mat-table {
-	// max-height: calc(100vh - 250px);
-	// overflow-y: auto;
-	width: 100%;
-}
-.table-container .mat-table .mat-header-row {
-	position: absolute;
-	top: -50px;
-	left: 0px;
-	right: 18px;
-	background: #fff;
-}
-.table-header {
-	background-color: #1189a5;
-	color: white;
-	padding: 0px 20px 0px 20px;
-	color: white;
-}
-.table-component-holder {
-	border: 1px solid #1189a5;
-	background-color: white;
-}
 .mat-toolbar-single-row{
-	height: 65px;
+	height: 75px;
 }
 .mat-form-field {
-		font-size: 26px;
-    font-weight: 500;
-    line-height: normal;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+		font-weight: 500;
+		line-height: normal;
+		font-family: Roboto, "Helvetica Neue", sans-serif;
 		padding: 0px;
 		margin:0;
+
 		width: 100%;
 }
 
-.mat-table {
- 	font-weight: 300;
- 	font-style: normal;
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {text-align: center !important; margin-left: 52px !important;}
+
+
+.mat-column-id {
+	flex: 1 0 24px;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.mat-column-block_height {
+  flex: 4 1 85%;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+
+
+mat-card {
+  padding: 5px;
+  margin: 5px;
+}
+@mixin delegate-info($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  .service-card-container {
+    padding: 0px;
+    margin: 10px 5px;
+    .service-card {
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        cursor: default;
+        background-color: mat-color($primary);
+        color: white;
+        padding: 20px;
+        h3 {
+            margin: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+        p {
+            margin: 0;
+            text-align: center;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    }
+  }
 }

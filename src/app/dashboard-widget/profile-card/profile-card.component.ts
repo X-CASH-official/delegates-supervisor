@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {HttpdataService} from '../../services/http-request.service';
-import Swal from 'sweetalert2';
+import { FunctionsService } from './../../services/functions.service';
+
 
 @Component({
   selector: 'cdk-profile-card',
@@ -9,46 +9,24 @@ import Swal from 'sweetalert2';
 })
 export class ProfileCardComponent implements OnInit {
 
-    @Input() title: string;
-    @Input() settings: object;
-    @Input() data_settings: object;
-    @Input() text_settings: object;
-    @Input() data: string;
-    @Input() button_name: string;
-    @Input() button_length: string;
-    @Input() button_click: string;
+  @Input() title: string;
+  @Input() settings: object;
+  @Input() data_settings: object;
+  @Input() text_settings: object;
+  @Input() data: string;
+  @Input() button_name: string;
+  @Input() button_length: string;
+  @Input() button_click: string;
 
-    about:string;
-    website:string;
-    team:string;
-    shared_delegate_status:string;
-    delegate_fee:string;
-    server_specs:string;
-    public_address:string;
+  constructor(public functionsService: FunctionsService){ }
 
-    width:number = 0;
+  width:number = 0;
 
-    public bio =true;
-    public skill;
-    public proj;
-    constructor(private HttpdataService: HttpdataService) { }
-
-   copyMessage(val: string, text:string){
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-    Swal.fire("Success",text,"success");
+  redirect(url:string){
+    window.location.href = url;
   }
+  ngOnInit() {
 
-    ngOnInit() {
-    }
-
+    this.width = window.innerWidth * 0.9;
+  }
 }

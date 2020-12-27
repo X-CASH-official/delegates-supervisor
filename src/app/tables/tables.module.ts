@@ -26,19 +26,12 @@ import { MatPaginatorModule,
          MatButtonToggleModule } from '@angular/material';
 
 
-import * as hljs from 'highlight.js';
-import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
-import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
+
 import { delegatesComponent } from './delegates/delegates.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { DashboardWidgetModule } from '../dashboard-widget/dashboard-widget.module';
 
-
-export function highlightJsFactory(): any {
-  hljs.registerLanguage('typescript', hljsTypescript);
-  return hljs;
-}
 
 @NgModule({
   imports: [
@@ -63,13 +56,9 @@ export function highlightJsFactory(): any {
     MatCheckboxModule,
     MatTooltipModule,
     MatChipsModule,
-    MatButtonToggleModule,    
+    MatButtonToggleModule,
     MatCardModule,
     DashboardWidgetModule,
-    HighlightJsModule.forRoot({
-      provide: HIGHLIGHT_JS,
-      useFactory: highlightJsFactory
-    }),
     TablesRouterModule
   ],
   declarations: [
@@ -78,8 +67,6 @@ export function highlightJsFactory(): any {
 
   exports: [
     ]
-      
+
 })
 export class TablesModule { }
-
-

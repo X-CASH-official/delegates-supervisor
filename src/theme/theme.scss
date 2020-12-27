@@ -4,11 +4,7 @@
 @import '../app/core/sidemenu-item/sidemenu-item.component.scss';
 @import '../app/dashboard-widget/dashcard/dashcard.component.scss';
 @import '../app/dashboard-widget/profile-card/profile-card.component.scss';
-
-// @import '../app/API/API.component.scss';
-// @import '../app/help/help.component.scss';
-// @import '../app/statistics/statistics.component.scss';
-// @import '../app/delegates_information/delegates_information.component.scss';
+@import '../app/tables/delegates/delegates.component.scss';
 
 @import './palette.scss';
 
@@ -65,10 +61,8 @@ $spin_background-darksea: mat-palette($warning-darksea, 900, 0.9);
   @include mat-table-theme($cdk-theme-dark-darksea);
 
   @include auth($cdk-theme-dark-darksea);
-  // @include help($cdk-theme-dark-darksea);
-  // @include api($cdk-theme-dark-darksea);
-  // @include stats($cdk-theme-dark-darksea);
-  // @include delegate-info($cdk-theme-dark-darksea);
+  @include delegate-info($cdk-theme-dark-darksea);
+  
 
   // Backgrounds
   .mat-drawer-container{ background: #1d3557; }
@@ -151,10 +145,8 @@ $warning-unicorn : $mat-lime;
   @include angular-material-theme($cdk-theme-light-unicorn);
   @include mat-table-theme($cdk-theme-light-unicorn);
   @include auth($cdk-theme-light-unicorn);
-  // @include help($cdk-theme-light-unicorn);
-  // @include api($cdk-theme-light-unicorn);
-  // @include stats($cdk-theme-light-unicorn);
-  // @include delegate-info($cdk-theme-light-unicorn);
+  @include delegate-info($cdk-theme-light-unicorn);
+  
 
   // Logo SVG Fill
   .xca0 { fill: mat-color($mat-cyan,500); }
@@ -232,10 +224,8 @@ $warning-unicorn : $mat-lime;
   @include angular-material-theme($cdk-theme-light-xteal);
   @include mat-table-theme($cdk-theme-light-xteal);
   @include auth($cdk-theme-light-xteal);
-  // @include help($cdk-theme-light-xteal);
-  // @include api($cdk-theme-light-xteal);
-  // @include stats($cdk-theme-light-xteal);
-  // @include delegate-info($cdk-theme-light-xteal);
+  @include delegate-info($cdk-theme-light-xteal);
+  
   // Logo SVG Fill
   .xca0 { fill: mat-color($accent-xteal,500); }
   .xca1 { fill: mat-color($primary-xteal,500); }
@@ -300,10 +290,8 @@ $warning-unicorn : $mat-lime;
   @include angular-material-theme($cdk-theme-dark-xgrey);
   @include mat-table-theme($cdk-theme-dark-xgrey);
   @include auth($cdk-theme-dark-xgrey);
-  // @include help($cdk-theme-dark-xgrey);
-  // @include api($cdk-theme-dark-xgrey);
-  // @include stats($cdk-theme-dark-xgrey);
-  // @include delegate-info($cdk-theme-dark-xgrey);
+  @include delegate-info($cdk-theme-dark-xgrey);
+  
   // Logo SVG Fill
   .xca0 { fill: mat-color($accent-xgrey,500); }
   .xca1 { fill: white; }

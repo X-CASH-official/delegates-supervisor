@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthComponent } from './auth.component';
 import { RouterModule } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -34,7 +33,6 @@ import { CoreModule } from '../core/core.module';
         MatSidenavModule,
         PerfectScrollbarModule,
     ],
-    declarations: [AuthComponent],
     providers: [
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
